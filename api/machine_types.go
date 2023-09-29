@@ -604,6 +604,17 @@ func (c *MachineConfig) ProcessGroup() string {
 	return c.Metadata["process_group"]
 }
 
+func (c *MachineConfig) IsMultiImage() bool {
+	// if any of the processes has an image, it's considered
+	// a multi image machine
+	for _, p := range c.Processes {
+		if p.Image != "" {
+			return true
+		}
+	}
+	return false
+}
+
 type Static struct {
 	GuestPath string `toml:"guest_path" json:"guest_path" validate:"required"`
 	UrlPrefix string `toml:"url_prefix" json:"url_prefix" validate:"required"`
