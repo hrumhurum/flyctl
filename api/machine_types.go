@@ -678,6 +678,9 @@ type LaunchMachineInput struct {
 }
 
 type MachineProcess struct {
+	Image              string            `json:"image,omitempty"`
+	Mounts             []MachineMount    `json:"mounts,omitempty"`
+	Files              []*File           `json:"files,omitempty"`
 	ExecOverride       []string          `json:"exec,omitempty"`
 	EntrypointOverride []string          `json:"entrypoint,omitempty"`
 	CmdOverride        []string          `json:"cmd,omitempty"`
